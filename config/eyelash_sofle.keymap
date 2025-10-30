@@ -70,11 +70,7 @@
         pubg: pubg {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
-            bindings =
-                <&macro_tap>,
-                <&to 1 &rgb_ug RGB_COLOR_HSB(283,93,49)>,
-                <&macro_wait_time 1000>,
-                <&rgb_ug RGB_COLOR_HSB(297,90,49)>;
+            bindings = <&macro_tap>, <&to 1 &rgb_ug RGB_COLOR_HSB(283,93,49)>;
 
             label = "PUBG";
         };
@@ -85,7 +81,7 @@
             bindings =
                 <&macro_tap>,
                 <&to 4 &rgb_ug RGB_COLOR_HSB(59,93,49)>,
-                <&macro_wait_time 1000>,
+                <&macro_wait_time 10000>,
                 <&rgb_ug RGB_COLOR_HSB(56,90,49)>;
 
             label = "RGB";
