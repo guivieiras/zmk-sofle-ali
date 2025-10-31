@@ -94,7 +94,7 @@
         layersel: layersel {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
-            bindings = <&macro_tap>, <&to 6 &rgb_ug RGB_COLOR_HSB(171,93,49)>;
+            bindings = <&macro_tap>, <&to 6 &rgb_ug RGB_COLOR_HSB(360,0,100)>;
 
             label = "LAYERSEL";
         };
@@ -102,8 +102,23 @@
         winR: winR {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
-            bindings = <&kp LEFT_GUI &kp R>;
+            bindings =
+                <&macro_press>,
+                <&kp LEFT_GUI>,
+                <&macro_tap>,
+                <&kp R>,
+                <&macro_release>,
+                <&kp LEFT_GUI>;
+
             label = "WINR";
+        };
+
+        configlay: configlay {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&macro_tap>, <&to 3 &rgb_ug RGB_COLOR_HSB(360,93,49)>;
+
+            label = "CONFIGLAY";
         };
     };
 
@@ -112,11 +127,11 @@
 
         default {
             bindings = <
-&kp ESC     &kp N1        &kp N2        &kp N3        &kp N4            &kp N5       &kp UP_ARROW     &kp N6     &kp N7     &kp N8        &kp N9           &kp N0      &kp BACKSPACE
-&kp TAB     &kp Q         &kp W         &kp E         &kp R             &kp T        &kp DOWN_ARROW   &kp Y      &kp U      &kp I         &kp O            &kp P       &kp EQUAL
-&kp CAPS    &kp A         &kp S         &kp D         &kp F             &kp G        &kp LEFT_ARROW   &kp H      &kp J      &kp K         &kp L            &kp SEMI    &kp APOS
-&kp LSHFT   &kp Z         &kp X         &kp C         &kp V             &kp B        &kp RIGHT_ARROW  &kp N      &kp M      &kp COMMA     &kp DOT          &kp FSLH    &kp ENTER
-&kp C_MUTE  &kp LEFT_GUI  &kp LEFT_ALT  &momentlayer  &kp LEFT_CONTROL  &kp SPACE    &kp ENTER        &kp SPACE  &kp ENTER  &momentlayer  &kp RIGHT_SHIFT  &kp DELETE
+&kp ESC     &kp N1        &kp N2        &kp N3  &kp N4            &kp N5       &kp UP_ARROW     &kp N6     &kp N7     &kp N8     &kp N9           &kp N0      &kp BACKSPACE
+&kp TAB     &kp Q         &kp W         &kp E   &kp R             &kp T        &kp DOWN_ARROW   &kp Y      &kp U      &kp I      &kp O            &kp P       &kp EQUAL
+&kp CAPS    &kp A         &kp S         &kp D   &kp F             &kp G        &kp LEFT_ARROW   &kp H      &kp J      &kp K      &kp L            &kp SEMI    &kp APOS
+&kp LSHFT   &kp Z         &kp X         &kp C   &kp V             &kp B        &kp RIGHT_ARROW  &kp N      &kp M      &kp COMMA  &kp DOT          &kp FSLH    &kp ENTER
+&kp C_MUTE  &kp LEFT_GUI  &kp LEFT_ALT  &mo 5   &kp LEFT_CONTROL  &kp SPACE    &kp ENTER        &kp SPACE  &kp ENTER  &mo 5      &kp RIGHT_SHIFT  &kp DELETE
             >;
 
             sensor-bindings = <&inc_dec_kp C_VOLUME_UP C_VOL_DN>;
@@ -125,10 +140,10 @@
 
         pubg {
             bindings = <
-&none    &trans  &trans  &trans  &trans  &trans    &trans         &trans  &trans  &trans  &trans  &trans  &trans
+&none    &trans  &trans  &trans  &trans  &trans    &configlay     &trans  &trans  &trans  &trans  &trans  &trans
 &trans   &trans  &trans  &trans  &trans  &trans    &rgb           &trans  &trans  &trans  &trans  &trans  &trans
 &trans   &trans  &trans  &trans  &trans  &trans    &defaultlayer  &trans  &trans  &trans  &trans  &trans  &trans
-&trans   &trans  &trans  &trans  &trans  &trans    &trans         &trans  &trans  &trans  &trans  &trans  &trans
+&trans   &trans  &trans  &trans  &trans  &trans    &defaultlayer  &trans  &trans  &trans  &trans  &trans  &trans
 &kp ESC  &trans  &trans  &trans  &trans  &trans    &trans         &trans  &trans  &trans  &trans  &trans
             >;
 
@@ -151,11 +166,11 @@
 
         config {
             bindings = <
-&trans  &bt BT_SEL 0  &bt BT_SEL 1    &bt BT_SEL 2  &bt BT_SEL 3  &bt BT_SEL 4    &trans  &trans  &trans  &trans      &trans     &trans       &trans
-&trans  &bt BT_CLR    &bt BT_CLR_ALL  &trans        &trans        &trans          &trans  &trans  &trans  &trans      &trans     &trans       &trans
-&trans  &out OUT_USB  &out OUT_BLE    &trans        &trans        &trans          &trans  &trans  &trans  &trans      &trans     &trans       &trans
-&trans  &sys_reset    &trans          &bootloader   &trans        &trans          &trans  &trans  &trans  &sys_reset  &soft_off  &bootloader  &trans
-&trans  &trans        &trans          &trans        &trans        &trans          &trans  &trans  &trans  &trans      &trans     &trans
+&trans  &bt BT_SEL 0  &bt BT_SEL 1    &bt BT_SEL 2  &bt BT_SEL 3  &bt BT_SEL 4    &defaultlayer  &trans  &trans  &trans      &trans     &trans       &trans
+&trans  &bt BT_CLR    &bt BT_CLR_ALL  &trans        &trans        &trans          &rgb           &trans  &trans  &trans      &trans     &trans       &trans
+&trans  &out OUT_USB  &out OUT_BLE    &trans        &trans        &trans          &defaultlayer  &trans  &trans  &trans      &trans     &trans       &trans
+&trans  &sys_reset    &trans          &bootloader   &trans        &trans          &pubg          &trans  &trans  &sys_reset  &soft_off  &bootloader  &trans
+&trans  &trans        &trans          &trans        &trans        &trans          &trans         &trans  &trans  &trans      &trans     &trans
             >;
 
             display-name = "config";
@@ -164,7 +179,7 @@
 
         rgb {
             bindings = <
-&trans  &trans           &trans          &trans           &trans           &trans             &trans         &trans           &trans           &trans  &trans  &trans  &trans
+&trans  &trans           &trans          &trans           &trans           &trans             &configlay     &trans           &trans           &trans  &trans  &trans  &trans
 &trans  &trans           &trans          &trans           &trans           &trans             &defaultlayer  &trans           &trans           &trans  &trans  &trans  &trans
 &trans  &trans           &trans          &trans           &trans           &trans             &defaultlayer  &trans           &trans           &trans  &trans  &trans  &trans
 &trans  &rgb_ug RGB_OFF  &rgb_ug RGB_ON  &rgb_ug RGB_EFF  &rgb_ug RGB_EFR  &rgb_ug RGB_SPI    &pubg          &rgb_ug RGB_BRI  &rgb_ug RGB_BRD  &trans  &trans  &trans  &trans
@@ -189,7 +204,7 @@
 
         layersel {
             bindings = <
-&none  &none  &none  &none  &none  &none    &none          &none  &none  &none  &none  &none  &none
+&none  &none  &none  &none  &none  &none    &configlay     &none  &none  &none  &none  &none  &none
 &none  &none  &none  &none  &none  &none    &rgb           &none  &none  &none  &none  &none  &none
 &none  &none  &none  &none  &none  &none    &defaultlayer  &none  &none  &none  &none  &none  &none
 &none  &none  &none  &none  &none  &none    &pubg          &none  &none  &none  &none  &none  &none
