@@ -120,6 +120,16 @@
 
             label = "CONFIGLAY";
         };
+
+        deflayerenablergb: deflayerenablergb {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings =
+                <&macro_tap>,
+                <&rgb_ug RGB_ON &rgb_ug RGB_BRI &to 0 &rgb_ug RGB_COLOR_HSB(212,93,49)>;
+
+            label = "DEFLAYERENABLERGB";
+        };
     };
 
     keymap {
@@ -127,11 +137,11 @@
 
         default {
             bindings = <
-&kp ESC     &kp N1        &kp N2        &kp N3  &kp N4            &kp N5       &kp UP_ARROW     &kp N6     &kp N7     &kp N8     &kp N9           &kp N0      &kp BACKSPACE
-&kp TAB     &kp Q         &kp W         &kp E   &kp R             &kp T        &kp DOWN_ARROW   &kp Y      &kp U      &kp I      &kp O            &kp P       &kp EQUAL
-&kp CAPS    &kp A         &kp S         &kp D   &kp F             &kp G        &kp LEFT_ARROW   &kp H      &kp J      &kp K      &kp L            &kp SEMI    &kp APOS
-&kp LSHFT   &kp Z         &kp X         &kp C   &kp V             &kp B        &kp RIGHT_ARROW  &kp N      &kp M      &kp COMMA  &kp DOT          &kp FSLH    &kp ENTER
-&kp C_MUTE  &kp LEFT_GUI  &kp LEFT_ALT  &mo 5   &kp LEFT_CONTROL  &kp SPACE    &kp ENTER        &kp SPACE  &kp ENTER  &mo 5      &kp RIGHT_SHIFT  &kp DELETE
+&kp ESC     &kp N1        &kp N2        &kp N3  &kp N4            &kp N5       &kp UP_ARROW     &kp N6     &kp N7             &kp N8     &kp N9           &kp N0      &kp BACKSPACE
+&kp TAB     &kp Q         &kp W         &kp E   &kp R             &kp T        &kp DOWN_ARROW   &kp Y      &kp U              &kp I      &kp O            &kp P       &kp MINUS
+&kp CAPS    &kp A         &kp S         &kp D   &kp F             &kp G        &kp LEFT_ARROW   &kp H      &kp J              &kp K      &kp L            &kp SEMI    &kp APOS
+&kp LSHFT   &kp Z         &kp X         &kp C   &kp V             &kp B        &kp RIGHT_ARROW  &kp N      &kp M              &kp COMMA  &kp DOT          &kp FSLH    &kp ENTER
+&kp C_MUTE  &kp LEFT_GUI  &kp LEFT_ALT  &mo 5   &kp LEFT_CONTROL  &kp SPACE    &kp ENTER        &kp SPACE  &kp RIGHT_CONTROL  &mo 5      &kp RIGHT_SHIFT  &kp DELETE
             >;
 
             sensor-bindings = <&inc_dec_kp C_VOLUME_UP C_VOL_DN>;
@@ -192,11 +202,11 @@
 
         moment_layer {
             bindings = <
-&trans  &kp F1     &kp F2  &kp F3  &kp F4  &kp F5       &trans  &kp F6         &kp F7          &kp F8          &kp F9           &kp F10           &kp F11
-&trans  &kp GRAVE  &trans  &trans  &winR   &trans       &trans  &kp PAGE_UP    &kp END         &kp UP_ARROW    &kp HOME         &kp MINUS         &kp BACKSLASH
-&trans  &kp TILDE  &trans  &trans  &trans  &layersel    &trans  &kp PAGE_DOWN  &kp LEFT_ARROW  &kp DOWN_ARROW  &kp RIGHT_ARROW  &kp LEFT_BRACKET  &kp RIGHT_BRACKET
-&trans  &trans     &trans  &trans  &trans  &trans       &trans  &trans         &trans          &kp INSERT      &trans           &trans            &trans
-&trans  &trans     &trans  &trans  &trans  &trans       &trans  &trans         &trans          &trans          &trans           &trans
+&trans  &kp F1     &kp F2  &kp F3  &kp F4  &kp F5       &trans              &kp F6         &kp F7           &kp F8          &kp F9           &kp F10           &kp F11
+&trans  &kp GRAVE  &trans  &trans  &winR   &trans       &trans              &kp PAGE_UP    &kp HOME         &kp UP_ARROW    &kp END          &kp BACKSLASH     &kp EQUAL
+&trans  &kp TILDE  &trans  &trans  &trans  &layersel    &trans              &kp PAGE_DOWN  &kp LEFT_ARROW   &kp DOWN_ARROW  &kp RIGHT_ARROW  &kp LEFT_BRACKET  &kp RIGHT_BRACKET
+&trans  &trans     &trans  &trans  &trans  &trans       &trans              &trans         &kp PRINTSCREEN  &kp INSERT      &trans           &trans            &trans
+&trans  &trans     &trans  &trans  &trans  &trans       &deflayerenablergb  &trans         &trans           &trans          &trans           &trans
             >;
 
             sensor-bindings = <&scroll_encoder>;
